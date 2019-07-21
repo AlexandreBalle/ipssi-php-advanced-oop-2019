@@ -2,35 +2,26 @@
 
 namespace src\Entities\Musicians;
 
-class Singer
+use src\Interfaces\Musician;
+
+class Singer implements Musician
 {
     /**
-     * @var null|int
+     * @var string
      */
-    private $id = null;
+    private $name = "Josephine";
 
     /**
      * @var string
      */
-    private $name;
-
-
-    public function rest()
-    {
-        // TODO: Implement rest() method.
-    }
-
-    public function play()
-    {
-        // TODO: Implement play() method.
-    }
+    private $role = "Chanteuse";
 
     /**
-     * @return int|null
+     * @return boolean
      */
-    public function getId(): int
+    public function sing()
     {
-        return $this->id;
+        return true;
     }
 
     /**
@@ -39,5 +30,33 @@ class Singer
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function playInstrument()
+    {
+        // TODO: Implement playInstrument() method.
+    }
+
+    public function resting()
+    {
+        // TODO: Implement resting() method.
+    }
+
+    public function playSolo()
+    {
+        // TODO: Implement playSolo() method.
+    }
+
+    public function canSing()
+    {
+        // TODO: Implement canSing() method.
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole(): string
+    {
+        return $this->role;
     }
 }

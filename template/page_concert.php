@@ -3,27 +3,31 @@
     <title>Music</title>
 </head>
 <body>
-    <?php if (isset($concert)): ?>
-        <h1><?= $concert->getName(); ?></h1>
-    <table border>
-        <thead>
-            <tr>
-                <th>Nom</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($concert->getBands() as $band): ?>
-            <tr>
-                <td><?= $band->getName(); ?></td>
-                <td>
-                <?php foreach ($band->getMembers() as $member): ?>
-                    <?= get_class($member); ?>
+    <?php if (isset($concerts)): ?>
+        <?php foreach ($concerts as $concert): ?>
+            <h1><?= $concert->getName(); ?></h1>
+            <table border>
+                <thead>
+                    <tr>
+                        <th>Groupes</th>
+                        <th>Membres</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($concert->getBands() as $band): ?>
+                    <tr>
+                        <td><?= $band->getName(); ?></td>
+                        <td>
+                        <?php foreach ($band->getMembers() as $member): ?>
+                            <?= $member->getName(); ?> ( <?= $member->getRole(); ?>
+                            <?php if ($member->canSing()): ?>/ Singer<?php endif; ?>)
+                        <?php endforeach; ?>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
-                </td>
-            </tr>
+                </tbody>
+            </table>
         <?php endforeach; ?>
-        </tbody>
-    </table>
     <?php endif; ?>
 </body>
 </html>

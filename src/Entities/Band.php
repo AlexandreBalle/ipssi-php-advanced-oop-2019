@@ -2,7 +2,6 @@
 
 namespace src\Entities;
 
-use App\Interfaces\Musician;
 use src\Entities\Musicians\Bassist;
 use src\Entities\Musicians\Drummer;
 use src\Entities\Musicians\Guitarist;
@@ -78,9 +77,9 @@ class Band
      */
     public function addMembers()
     {
-        $name = [Bassist::class, Guitarist::class, Drummer::class, Singer::class];
-        for ($i = 0; $i < \random_int(1,5); $i++) {
-            $this->members[] = new $name[$i];
+        $member = [Bassist::class, Guitarist::class, Drummer::class, Singer::class];
+        for ($i = 0; $i < \random_int(1,4); $i++) {
+            $this->members[] = new $member[$i];
         }
 
         return $this->members;

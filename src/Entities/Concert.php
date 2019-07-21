@@ -31,12 +31,6 @@ class Concert
      */
     public $bands =[];
 
-
-    public function __construct()
-    {
-        $this->name = "Rock en seine !";
-    }
-
     /**
      * @return int|null
      */

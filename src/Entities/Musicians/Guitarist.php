@@ -2,7 +2,9 @@
 
 namespace src\Entities\Musicians;
 
-class Guitarist extends Singer
+use src\Interfaces\Musician;
+
+class Guitarist extends Singer implements Musician
 {
     /**
      * @var null|int
@@ -12,12 +14,12 @@ class Guitarist extends Singer
     /**
      * @var string
      */
-    private $name;
+    private $name = "Alexandre";
 
     /**
      * @var string
      */
-    private $instrument = "guitar";
+    private $role = "Guitariste";
 
     public function playInstrument()
     {
@@ -43,14 +45,6 @@ class Guitarist extends Singer
     }
 
     /**
-     * @param int|null $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
-
-    /**
      * @return string
      */
     public function getName(): string
@@ -59,26 +53,19 @@ class Guitarist extends Singer
     }
 
     /**
-     * @param string $name
-     */
-    public function setName(string $name)
-    {
-        $this->name = $name;
-    }
-
-    /**
      * @return string
      */
-    public function getInstrument(): string
+    public function getRole(): string
     {
-        return $this->instrument;
+        return $this->role;
     }
 
-    /**
-     * @param string $instrument
-     */
-    public function setInstrument(string $instrument)
+    public function canSing()
     {
-        $this->instrument = $instrument;
+        if (rand(0, 1)) {
+            return $this->sing();
+        }
+
+        return false;
     }
 }
