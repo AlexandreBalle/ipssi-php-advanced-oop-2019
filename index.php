@@ -1,12 +1,12 @@
 <?php
 
 use src\Routing;
-use src\Entities\{
-    Concert, Band
+use src\Entities\{Concert, Band, Organiser};
+use src\Entities\Musicians\{
+    Bassist, Guitarist,
+    Singer, Drummer
 };
-use src\Controllers\{
-    ConcertController, BandController
-};
+use src\Controllers\ConcertController;
 
 require "conf.php";
 
@@ -28,19 +28,32 @@ $routes = Routing::getRoute($slug);
 extract($routes);
 
 $container = [
-    Concert::class => function () {
-        return new Concert();
+    Organiser::class => function () {
+        return new Organiser();
+    },
+    Concert::class => function ($container) {
+        $organiser = $container[Organiser::class]();
+        return new Concert($organiser);
     },
     Band::class => function () {
         return new Band();
     },
+    Singer::class => function () {
+        return new Singer();
+    },
+    Guitarist::class => function () {
+        return new Guitarist();
+    },
+    Bassist::class => function () {
+        return new Bassist();
+    },
+    Drummer::class => function () {
+        return new Drummer();
+    },
     ConcertController::class => function ($container) {
-        $concert = $container[Concert::class]();
-        return new ConcertController($concert);
-    },
-    BandController::class => function () {
-        return new BandController();
-    },
+        $organiser = $container[Organiser::class]();
+        return new ConcertController($organiser);
+    }
 ];
 
 // Vérifie l'existence du fichier et de la classe pour charger le controlleur

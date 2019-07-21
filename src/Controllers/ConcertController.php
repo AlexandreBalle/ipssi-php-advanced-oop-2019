@@ -3,8 +3,19 @@
 namespace src\Controllers;
 
 use src\Entities\Concert;
+use src\Entities\Organiser;
 
 class ConcertController {
+    /**
+     * @var Organiser
+     */
+    private $organiser;
+
+
+    public function __construct(Organiser $organiser)
+    {
+        $this->organiser = $organiser;
+    }
 
     public function defaultAction()
     {
@@ -14,7 +25,7 @@ class ConcertController {
         ];
 
         for ($i = 0; $i < \random_int(1,4); $i++) {
-            $concert = new Concert();
+            $concert = new Concert($this->organiser);
             $concert->setName($concertName[$i]);
             $concert->addBands();
             $concerts[] = $concert;

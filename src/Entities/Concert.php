@@ -32,6 +32,16 @@ class Concert
     public $bands =[];
 
     /**
+     * @var Organiser
+     */
+    private $organiser;
+
+    public function __construct(Organiser $organiser)
+    {
+        $this->organiser = $organiser;
+    }
+
+    /**
      * @return int|null
      */
     public function getId(): int
@@ -123,5 +133,13 @@ class Concert
     public function setBands(array $bands)
     {
         $this->bands = $bands;
+    }
+
+    /**
+     * @return Organiser
+     */
+    public function getOrganiser(): Organiser
+    {
+        return $this->organiser;
     }
 }

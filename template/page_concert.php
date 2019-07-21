@@ -5,7 +5,7 @@
 <body>
     <?php if (isset($concerts)): ?>
         <?php foreach ($concerts as $concert): ?>
-            <h1><?= $concert->getName(); ?></h1>
+            <h1><?= $concert->getName(); ?> organisé par <?= $concert->getOrganiser()->getName(); ?></h1>
             <table border>
                 <thead>
                     <tr>
